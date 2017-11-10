@@ -88,7 +88,6 @@ double RocketLauncher::GetDesirability(double DistToTarget)
 void RocketLauncher::InitializeFuzzyModule()
 {
   FuzzyVariable& DistToTarget = m_FuzzyModule.CreateFLV("DistToTarget");
-
   FzSet& Target_Close = DistToTarget.AddLeftShoulderSet("Target_Close",0,25,75);
   FzSet& Target_Low_Medium = DistToTarget.AddTriangularSet("Target_Low_Medium",25,100,150);
   FzSet& Target_Medium = DistToTarget.AddTriangularSet("Target_Medium", 100, 150, 225);

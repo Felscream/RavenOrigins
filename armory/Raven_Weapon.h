@@ -24,6 +24,12 @@ class  Raven_Bot;
 
 class Raven_Weapon
 {
+
+private:
+	// Initialize fuzzy precision noise
+	void  InitializeFuzzyModulePrecision();
+	
+
 protected:
 
   //a weapon is always (in this game) carried by a bot
@@ -52,6 +58,7 @@ protected:
   //this is used to keep a local copy of the previous desirability score
   //so that we can give some feedback for debugging
   double         m_dLastDesirabilityScore;
+  double		 m_dLastPrecisionScore;
 
   //this is the prefered distance from the enemy when using this weapon
   double         m_dIdealRange;
@@ -75,7 +82,7 @@ protected:
   std::vector<Vector2D>   m_vecWeaponVB;
   std::vector<Vector2D>   m_vecWeaponVBTrans;
 
-
+  
 
 public:
 
@@ -95,6 +102,7 @@ public:
                                  m_dMaxProjectileSpeed(ProjectileSpeed)
   {  
     m_dTimeNextAvailable = Clock->GetCurrentTime();
+	InitializeFuzzyModulePrecision();
   }
 
   virtual ~Raven_Weapon(){}
@@ -130,6 +138,8 @@ public:
   void          IncrementRounds(int num); 
   unsigned int  GetType()const{return m_iType;}
   double         GetIdealRange()const{return m_dIdealRange;}
+
+  double GetPrecision(double DistToTarget, double Velocity, double VisibleTime);
 };
 
 

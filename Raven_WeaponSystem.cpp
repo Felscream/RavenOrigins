@@ -9,6 +9,7 @@
 #include "Raven_Game.h"
 #include "Raven_UserOptions.h"
 #include "2D/transformations.h"
+#include "math.h"
 
 
 
@@ -241,8 +242,14 @@ void Raven_WeaponSystem::TakeAimAndShoot()const
 void Raven_WeaponSystem::AddNoiseToAim(Vector2D& AimingPos)const
 {
   Vector2D toPos = AimingPos - m_pOwner->Pos();
+  double targetSpeed = m_pOwner->GetTargetBot()->Speed();
+  double targetVisibleTime = m_pOwner->GetTargetSys()->GetTimeTargetHasBeenVisible();
+  double DistToTarget = toPos.Length();
 
-  Vec2DRotateAroundOrigin(toPos, RandInRange(-m_dAimAccuracy, m_dAimAccuracy));
+  double precision = m_pCurrentWeapon->GetPrecision(DistToTarget, targetSpeed, targetVisibleTime);
+  int sign = RandBool() ? 1 : -1;
+
+  Vec2DRotateAroundOrigin(toPos, RandInRange(-m_dAimAccuracy, m_dAimAccuracy) + sign * pi/2);
 
   AimingPos = toPos + m_pOwner->Pos();
 }
