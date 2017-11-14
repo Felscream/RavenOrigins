@@ -193,6 +193,75 @@ void Raven_Game::Update()
 
     m_bRemoveABot = false;
   }
+
+  if (GetAsyncKeyState('Z') < 0) {
+	  if (GetAsyncKeyState('D') < 0) {
+		  Vector2D p(m_pSelectedBot->Pos().x + 1, m_pSelectedBot->Pos().y - 1);
+		  m_pSelectedBot->GetBrain()->RemoveAllSubgoals();
+		  m_pSelectedBot->GetBrain()->AddGoal_MoveToPosition(p);
+	  }
+	  else if (GetAsyncKeyState('Q') < 0) {
+		  Vector2D p(m_pSelectedBot->Pos().x - 1, m_pSelectedBot->Pos().y - 1);
+		  m_pSelectedBot->GetBrain()->RemoveAllSubgoals();
+		  m_pSelectedBot->GetBrain()->AddGoal_MoveToPosition(p);
+	  }
+	  else {
+		  Vector2D p(m_pSelectedBot->Pos().x, m_pSelectedBot->Pos().y - 1);
+		  m_pSelectedBot->GetBrain()->RemoveAllSubgoals();
+		  m_pSelectedBot->GetBrain()->AddGoal_MoveToPosition(p);
+	  }
+  }
+  else if (GetAsyncKeyState('D') < 0) {
+	  if (GetAsyncKeyState('Z') < 0) {
+		  Vector2D p(m_pSelectedBot->Pos().x + 1, m_pSelectedBot->Pos().y - 1);
+		  m_pSelectedBot->GetBrain()->RemoveAllSubgoals();
+		  m_pSelectedBot->GetBrain()->AddGoal_MoveToPosition(p);
+	  }
+	  else if (GetAsyncKeyState('S') < 0) {
+		  Vector2D p(m_pSelectedBot->Pos().x + 1, m_pSelectedBot->Pos().y + 1);
+		  m_pSelectedBot->GetBrain()->RemoveAllSubgoals();
+		  m_pSelectedBot->GetBrain()->AddGoal_MoveToPosition(p);
+	  }
+	  else {
+		  Vector2D p(m_pSelectedBot->Pos().x + 1, m_pSelectedBot->Pos().y);
+		  m_pSelectedBot->GetBrain()->RemoveAllSubgoals();
+		  m_pSelectedBot->GetBrain()->AddGoal_MoveToPosition(p);
+	  }
+  }
+  else if (GetAsyncKeyState('Q') < 0) {
+	  if (GetAsyncKeyState('Z') < 0) {
+		  Vector2D p(m_pSelectedBot->Pos().x - 1, m_pSelectedBot->Pos().y - 1);
+		  m_pSelectedBot->GetBrain()->RemoveAllSubgoals();
+		  m_pSelectedBot->GetBrain()->AddGoal_MoveToPosition(p);
+	  }
+	  else if (GetAsyncKeyState('S') < 0) {
+		  Vector2D p(m_pSelectedBot->Pos().x - 1, m_pSelectedBot->Pos().y + 1);
+		  m_pSelectedBot->GetBrain()->RemoveAllSubgoals();
+		  m_pSelectedBot->GetBrain()->AddGoal_MoveToPosition(p);
+	  }
+	  else {
+		  Vector2D p(m_pSelectedBot->Pos().x - 1, m_pSelectedBot->Pos().y);
+		  m_pSelectedBot->GetBrain()->RemoveAllSubgoals();
+		  m_pSelectedBot->GetBrain()->AddGoal_MoveToPosition(p);
+	  }
+  }
+  else if (GetAsyncKeyState('S') < 0) {
+	  if (GetAsyncKeyState('D') < 0) {
+		  Vector2D p(m_pSelectedBot->Pos().x + 1, m_pSelectedBot->Pos().y + 1);
+		  m_pSelectedBot->GetBrain()->RemoveAllSubgoals();
+		  m_pSelectedBot->GetBrain()->AddGoal_MoveToPosition(p);
+	  }
+	  else if (GetAsyncKeyState('Q') < 0) {
+		  Vector2D p(m_pSelectedBot->Pos().x - 1, m_pSelectedBot->Pos().y + 1);
+		  m_pSelectedBot->GetBrain()->RemoveAllSubgoals();
+		  m_pSelectedBot->GetBrain()->AddGoal_MoveToPosition(p);
+	  }
+	  else {
+		  Vector2D p(m_pSelectedBot->Pos().x, m_pSelectedBot->Pos().y + 1);
+		  m_pSelectedBot->GetBrain()->RemoveAllSubgoals();
+		  m_pSelectedBot->GetBrain()->AddGoal_MoveToPosition(p);
+	  }
+  }
 }
 
 
@@ -232,7 +301,10 @@ bool Raven_Game::AttemptToAddBot(Raven_Bot* pBot)
     if (bAvailable)
     {  
       pBot->Spawn(pos);
-
+	  if (pBot == m_pSelectedBot) {
+		  m_pSelectedBot->TakePossession();
+		  m_pSelectedBot->GetBrain()->RemoveAllSubgoals();
+	  }
       return true;   
     }
   }
@@ -397,7 +469,7 @@ bool Raven_Game::LoadMap(const std::string& filename)
   if (m_pMap->LoadMap(filename))
   { 
     AddBots(script->GetInt("NumBots"));
-  
+	m_pSelectedBot = m_Bots.front();
     return true;
   }
 
@@ -458,7 +530,7 @@ void Raven_Game::ClickRightMouseButton(POINTS p)
   {
     //if the shift key is pressed down at the same time as clicking then the
     //movement command will be queued
-    if (IS_KEY_PRESSED('Q'))
+    if (IS_KEY_PRESSED('A'))
     {
       m_pSelectedBot->GetBrain()->QueueGoal_MoveToPosition(POINTStoVector(p));
     }
@@ -787,7 +859,7 @@ void Raven_Game::Render()
       m_pSelectedBot->GetWeaponSys()->RenderDesirabilities();
     }
 
-   if (IS_KEY_PRESSED('Q') && m_pSelectedBot->isPossessed())
+   if (IS_KEY_PRESSED('A') && m_pSelectedBot->isPossessed())
     {
       gdi->TextColor(255,0,0);
       gdi->TextAtPos(GetClientCursorPosition(), "Queuing");
