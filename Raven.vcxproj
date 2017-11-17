@@ -474,6 +474,10 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='boundschecker|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <ClCompile Include="RN\CController.cpp" />
+    <ClCompile Include="RN\CData.cpp" />
+    <ClCompile Include="RN\CNeuralNet.cpp" />
+    <ClCompile Include="RN\CTimer.cpp" />
     <ClCompile Include="triggers\Trigger_HealthGiver.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -620,6 +624,10 @@
     <ClInclude Include="Common\Messaging\Telegram.h" />
     <ClInclude Include="Raven_SensoryMemory.h" />
     <ClInclude Include="Common\Triggers\Trigger.h" />
+    <ClInclude Include="RN\CController.h" />
+    <ClInclude Include="RN\CData.h" />
+    <ClInclude Include="RN\CNeuralNet.h" />
+    <ClInclude Include="RN\CTimer.h" />
     <ClInclude Include="triggers\Trigger_HealthGiver.h" />
     <ClInclude Include="Common\Triggers\Trigger_LimitedLifeTime.h" />
     <ClInclude Include="triggers\Trigger_OnButtonSendMsg.h" />
