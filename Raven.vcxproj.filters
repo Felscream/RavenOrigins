@@ -77,9 +77,6 @@
     <Filter Include="Common">
       <UniqueIdentifier>{f3f5ab42-49d8-4348-aa63-66655abd9be1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="RN">
-      <UniqueIdentifier>{13937820-fe3f-4101-a4a0-677ffc2652a3}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -270,18 +267,6 @@
     </ClCompile>
     <ClCompile Include="Common\fuzzy\FuzzySet_Triangle.cpp">
       <Filter>AI\fuzzy logic\fuzzy set types</Filter>
-    </ClCompile>
-    <ClCompile Include="RN\CData.cpp">
-      <Filter>RN</Filter>
-    </ClCompile>
-    <ClCompile Include="RN\CController.cpp">
-      <Filter>RN</Filter>
-    </ClCompile>
-    <ClCompile Include="RN\CNeuralNet.cpp">
-      <Filter>RN</Filter>
-    </ClCompile>
-    <ClCompile Include="RN\CTimer.cpp">
-      <Filter>RN</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -620,18 +605,6 @@
     </ClInclude>
     <ClInclude Include="Common\fuzzy\FuzzySet_Triangle.h">
       <Filter>AI\fuzzy logic\fuzzy set types</Filter>
-    </ClInclude>
-    <ClInclude Include="RN\CController.h">
-      <Filter>RN</Filter>
-    </ClInclude>
-    <ClInclude Include="RN\CData.h">
-      <Filter>RN</Filter>
-    </ClInclude>
-    <ClInclude Include="RN\CNeuralNet.h">
-      <Filter>RN</Filter>
-    </ClInclude>
-    <ClInclude Include="RN\CTimer.h">
-      <Filter>RN</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
