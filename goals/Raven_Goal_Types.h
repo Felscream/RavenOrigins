@@ -24,7 +24,6 @@ enum
   goal_strafe,
   goal_adjust_range,
   goal_say_phrase
-  
 };
 
 class GoalTypeToString : public TypeToString

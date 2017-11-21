@@ -47,6 +47,9 @@ double GetHealthGoal_Evaluator::CalculateDesirability(Raven_Bot* pBot)
 //-----------------------------------------------------------------------------
 void GetHealthGoal_Evaluator::SetGoal(Raven_Bot* pBot)
 {
+  if (pBot->Health() <= 20) {
+	  pBot->GetBrain()->AddGoal_Strafe();
+  }
   pBot->GetBrain()->AddGoal_GetItem(type_health); 
 }
 

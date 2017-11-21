@@ -50,6 +50,7 @@ public:
   void AddGoal_MoveToPosition(Vector2D pos);
   void AddGoal_GetItem(unsigned int ItemType);
   void AddGoal_Explore();
+  void AddGoal_Strafe();
   void AddGoal_AttackTarget();
 
   //this adds the MoveToPosition goal to the *back* of the subgoal list.
