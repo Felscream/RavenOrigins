@@ -11,6 +11,7 @@
 #include "Raven_UserOptions.h"
 #include "Raven_Game.h"
 #include "lua/Raven_Scriptor.h"
+#include "RN/mainTraining.h"
 
 
 //need to include this for the toolbar stuff
@@ -59,58 +60,61 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
 		//A WM_CREATE msg is sent when your application window is first
 		//created
     case WM_CREATE:
-      {
-         //to get get the size of the client window first we need  to create
-         //a RECT and then ask Windows to fill in our RECT structure with
-         //the client window size. Then we assign to cxClient and cyClient 
-         //accordingly
-			   RECT rect;
+	{
+		//to get get the size of the client window first we need  to create
+		//a RECT and then ask Windows to fill in our RECT structure with
+		//the client window size. Then we assign to cxClient and cyClient 
+		//accordingly
+		RECT rect;
 
-			   GetClientRect(hwnd, &rect);
+		GetClientRect(hwnd, &rect);
 
-			   cxClient = rect.right;
-			   cyClient = rect.bottom;
+		cxClient = rect.right;
+		cyClient = rect.bottom;
 
-         //seed random number generator
-         srand((unsigned) time(NULL));
+		//seed random number generator
+		srand((unsigned)time(NULL));
 
-         
-         //---------------create a surface to render to(backbuffer)
 
-         //create a memory device context
-         hdcBackBuffer = CreateCompatibleDC(NULL);
+		//---------------create a surface to render to(backbuffer)
 
-         //get the DC for the front buffer
-         HDC hdc = GetDC(hwnd);
+		//create a memory device context
+		hdcBackBuffer = CreateCompatibleDC(NULL);
 
-         hBitmap = CreateCompatibleBitmap(hdc,
-                                          cxClient,
-                                          cyClient);
+		//get the DC for the front buffer
+		HDC hdc = GetDC(hwnd);
 
-			  
-         //select the bitmap into the memory device context
-			   hOldBitmap = (HBITMAP)SelectObject(hdcBackBuffer, hBitmap);
+		hBitmap = CreateCompatibleBitmap(hdc,
+			cxClient,
+			cyClient);
 
-         //don't forget to release the DC
-         ReleaseDC(hwnd, hdc);  
-              
-         //create the game
-         g_pRaven = new Raven_Game();
 
-        //make sure the menu items are ticked/unticked accordingly
-        CheckMenuItemAppropriately(hwnd, IDM_NAVIGATION_SHOW_NAVGRAPH, UserOptions->m_bShowGraph);
-        CheckMenuItemAppropriately(hwnd, IDM_NAVIGATION_SHOW_PATH, UserOptions->m_bShowPathOfSelectedBot);
-        CheckMenuItemAppropriately(hwnd, IDM_BOTS_SHOW_IDS, UserOptions->m_bShowBotIDs);
-        CheckMenuItemAppropriately(hwnd, IDM_NAVIGATION_SMOOTH_PATHS_QUICK, UserOptions->m_bSmoothPathsQuick);
-        CheckMenuItemAppropriately(hwnd, IDM_NAVIGATION_SMOOTH_PATHS_PRECISE, UserOptions->m_bSmoothPathsPrecise);
-        CheckMenuItemAppropriately(hwnd, IDM_BOTS_SHOW_HEALTH, UserOptions->m_bShowBotHealth);
-        CheckMenuItemAppropriately(hwnd, IDM_BOTS_SHOW_TARGET, UserOptions->m_bShowTargetOfSelectedBot);
-        CheckMenuItemAppropriately(hwnd, IDM_BOTS_SHOW_FOV, UserOptions->m_bOnlyShowBotsInTargetsFOV);
-        CheckMenuItemAppropriately(hwnd, IDM_BOTS_SHOW_SCORES, UserOptions->m_bShowScore);
-        CheckMenuItemAppropriately(hwnd, IDM_BOTS_SHOW_GOAL_Q, UserOptions->m_bShowGoalsOfSelectedBot);
-        CheckMenuItemAppropriately(hwnd, IDM_NAVIGATION_SHOW_INDICES, UserOptions->m_bShowNodeIndices);
-        CheckMenuItemAppropriately(hwnd, IDM_BOTS_SHOW_SENSED, UserOptions->m_bShowOpponentsSensedBySelectedBot);
+		//select the bitmap into the memory device context
+		hOldBitmap = (HBITMAP)SelectObject(hdcBackBuffer, hBitmap);
 
+		//don't forget to release the DC
+		ReleaseDC(hwnd, hdc);
+
+		//create the game
+		g_pRaven = new Raven_Game();
+
+		//make sure the menu items are ticked/unticked accordingly
+		CheckMenuItemAppropriately(hwnd, IDM_NAVIGATION_SHOW_NAVGRAPH, UserOptions->m_bShowGraph);
+		CheckMenuItemAppropriately(hwnd, IDM_NAVIGATION_SHOW_PATH, UserOptions->m_bShowPathOfSelectedBot);
+		CheckMenuItemAppropriately(hwnd, IDM_BOTS_SHOW_IDS, UserOptions->m_bShowBotIDs);
+		CheckMenuItemAppropriately(hwnd, IDM_NAVIGATION_SMOOTH_PATHS_QUICK, UserOptions->m_bSmoothPathsQuick);
+		CheckMenuItemAppropriately(hwnd, IDM_NAVIGATION_SMOOTH_PATHS_PRECISE, UserOptions->m_bSmoothPathsPrecise);
+		CheckMenuItemAppropriately(hwnd, IDM_BOTS_SHOW_HEALTH, UserOptions->m_bShowBotHealth);
+		CheckMenuItemAppropriately(hwnd, IDM_BOTS_SHOW_TARGET, UserOptions->m_bShowTargetOfSelectedBot);
+		CheckMenuItemAppropriately(hwnd, IDM_BOTS_SHOW_FOV, UserOptions->m_bOnlyShowBotsInTargetsFOV);
+		CheckMenuItemAppropriately(hwnd, IDM_BOTS_SHOW_SCORES, UserOptions->m_bShowScore);
+		CheckMenuItemAppropriately(hwnd, IDM_BOTS_SHOW_GOAL_Q, UserOptions->m_bShowGoalsOfSelectedBot);
+		CheckMenuItemAppropriately(hwnd, IDM_NAVIGATION_SHOW_INDICES, UserOptions->m_bShowNodeIndices);
+		CheckMenuItemAppropriately(hwnd, IDM_BOTS_SHOW_SENSED, UserOptions->m_bShowOpponentsSensedBySelectedBot);
+
+		
+		
+		mainTraining("CSV/test1.csv", 16, 16, 3);
       }
 
       break;

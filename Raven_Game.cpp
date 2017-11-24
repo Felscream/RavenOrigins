@@ -22,7 +22,7 @@
 #include "armory/Projectile_Pellet.h"
 #include "armory/Projectile_Slug.h"
 #include "armory/Projectile_Bolt.h"
-
+#include "Debug/DebugConsole.h"
 #include "goals/Goal_Think.h"
 #include "goals/Raven_Goal_Types.h"
 
@@ -107,8 +107,9 @@ void Raven_Game::Clear()
 void Raven_Game::Update()
 { 
   //don't update if the user has paused the game
-  if (m_bPaused) return;
-
+	if (m_bPaused) return;
+  
+	  
   m_pGraveMarkers->Update();
 
   //get any player keyboard input
@@ -147,6 +148,10 @@ void Raven_Game::Update()
   bool bSpawnPossible = true;
   
   std::list<Raven_Bot*>::iterator curBot = m_Bots.begin();
+  if ((*curBot)->GetTargetSys()->GetTarget() != NULL) {
+	  debug_con << (*curBot)->GetTargetSys()->GetTarget()->Pos() << "";
+  }
+  
   for (curBot; curBot != m_Bots.end(); ++curBot)
   {
     //if this bot's status is 'respawning' attempt to resurrect it from

@@ -11,7 +11,7 @@
 #include "time/Regulator.h"
 #include "Raven_WeaponSystem.h"
 #include "Raven_SensoryMemory.h"
-
+#include <fstream>
 #include "Messaging/Telegram.h"
 #include "Raven_Messages.h"
 #include "Messaging/MessageDispatcher.h"
@@ -129,8 +129,7 @@ void Raven_Bot::Update()
   UpdateMovement();
 
   //if the bot is under AI control but not scripted
-  if (!isPossessed())
-  {           
+            
     //examine all the opponents in the bots sensory memory and select one
     //to be the current target
     if (m_pTargetSelectionRegulator->isReady())
@@ -138,31 +137,40 @@ void Raven_Bot::Update()
       m_pTargSys->Update();
     }
 
-    //appraise and arbitrate between all possible high level goals
-    if (m_pGoalArbitrationRegulator->isReady())
-    {
-       m_pBrain->Arbitrate(); 
-    }
+	if (!isPossessed())
+	{
+		//appraise and arbitrate between all possible high level goals
+		if (m_pGoalArbitrationRegulator->isReady())
+		{
+		   m_pBrain->Arbitrate(); 
+		}
 
-    //update the sensory memory with any visual stimulus
-    if (m_pVisionUpdateRegulator->isReady())
-    {
-      m_pSensoryMem->UpdateVision();
-    }
+		//update the sensory memory with any visual stimulus
+		if (m_pVisionUpdateRegulator->isReady())
+		{
+		  m_pSensoryMem->UpdateVision();
+		}
   
-    //select the appropriate weapon to use from the weapons currently in
-    //the inventory
-    if (m_pWeaponSelectionRegulator->isReady())
-    {       
-      m_pWeaponSys->SelectWeapon();       
-    }
+		//select the appropriate weapon to use from the weapons currently in
+		//the inventory
+		if (m_pWeaponSelectionRegulator->isReady())
+		{       
+		  m_pWeaponSys->SelectWeapon();       
+		}
 
-    //this method aims the bot's current weapon at the current target
-    //and takes a shot if a shot is possible
-    m_pWeaponSys->TakeAimAndShoot();
+		//this method aims the bot's current weapon at the current target
+		//and takes a shot if a shot is possible
+		m_pWeaponSys->TakeAimAndShoot();
 
 	
-  }
+	  }
+	else {
+		int length;
+		std::fstream myfile;
+		myfile.open("example.csv", std::ofstream::out | std::ofstream::app);
+		myfile << "This is the first cell in the first column.\n";
+		myfile.close();
+	}
 }
 
 

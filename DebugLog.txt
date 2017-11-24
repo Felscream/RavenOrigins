@@ -73,7 +73,429 @@ Creating a shotgun
 Creating a shotgun
 Creating a rocket_launcher
 maps/Raven_DM1.map loaded okay
-Player Possesses bot 401
-deleting raven bot (id = 401)
-deleting raven bot (id = 402)
-deleting raven bot (id = 403)
+ Neural Network Training Starting: ========================================================================== LR: 0.001, Momentum: 0.9, Max Epochs: 200 16 Input Neurons, 16 Hidden Neurons, 3 Output Neurons==========================================================================Epoch :0
+ Training Set Accuracy:0%, MSE: 0.127809
+ Generalization Set Accuracy:0%, MSE: 0.117288
+Epoch :1
+ Training Set Accuracy:0%, MSE: 0.119562
+ Generalization Set Accuracy:0%, MSE: 0.112673
+Epoch :2
+ Training Set Accuracy:1.73333%, MSE: 0.114862
+ Generalization Set Accuracy:2.9%, MSE: 0.108673
+Epoch :3
+ Training Set Accuracy:9.06667%, MSE: 0.111158
+ Generalization Set Accuracy:11.7%, MSE: 0.105539
+Epoch :4
+ Training Set Accuracy:15.9333%, MSE: 0.108306
+ Generalization Set Accuracy:15.2%, MSE: 0.102928
+Epoch :5
+ Training Set Accuracy:18.1333%, MSE: 0.105864
+ Generalization Set Accuracy:16.3%, MSE: 0.100634
+Epoch :6
+ Training Set Accuracy:20.2%, MSE: 0.103548
+ Generalization Set Accuracy:18.6%, MSE: 0.0983383
+Epoch :7
+ Training Set Accuracy:22.4667%, MSE: 0.100953
+ Generalization Set Accuracy:19.6%, MSE: 0.0956201
+Epoch :8
+ Training Set Accuracy:24.9%, MSE: 0.0977824
+ Generalization Set Accuracy:20.4%, MSE: 0.0929111
+Epoch :9
+ Training Set Accuracy:26.8667%, MSE: 0.0951296
+ Generalization Set Accuracy:21.5%, MSE: 0.0910109
+Epoch :10
+ Training Set Accuracy:28.7%, MSE: 0.0930409
+ Generalization Set Accuracy:24.6%, MSE: 0.0891588
+Epoch :11
+ Training Set Accuracy:30.5333%, MSE: 0.0910578
+ Generalization Set Accuracy:26.3%, MSE: 0.0873121
+Epoch :12
+ Training Set Accuracy:32.3%, MSE: 0.0891165
+ Generalization Set Accuracy:27.2%, MSE: 0.0853213
+Epoch :13
+ Training Set Accuracy:33.4333%, MSE: 0.0872667
+ Generalization Set Accuracy:28.1%, MSE: 0.0834018
+Epoch :14
+ Training Set Accuracy:34.0667%, MSE: 0.0854788
+ Generalization Set Accuracy:29.2%, MSE: 0.0815078
+Epoch :15
+ Training Set Accuracy:34.5667%, MSE: 0.0837549
+ Generalization Set Accuracy:29.4%, MSE: 0.079593
+Epoch :16
+ Training Set Accuracy:35.1%, MSE: 0.0820853
+ Generalization Set Accuracy:30.5%, MSE: 0.0778303
+Epoch :17
+ Training Set Accuracy:35.3333%, MSE: 0.080474
+ Generalization Set Accuracy:30.1%, MSE: 0.0762078
+Epoch :18
+ Training Set Accuracy:36.0333%, MSE: 0.0788972
+ Generalization Set Accuracy:30.3%, MSE: 0.07475
+Epoch :19
+ Training Set Accuracy:36.8%, MSE: 0.0774344
+ Generalization Set Accuracy:31.1%, MSE: 0.0732279
+Epoch :20
+ Training Set Accuracy:37.3%, MSE: 0.0760123
+ Generalization Set Accuracy:31.6%, MSE: 0.071745
+Epoch :21
+ Training Set Accuracy:38.0333%, MSE: 0.0746467
+ Generalization Set Accuracy:32%, MSE: 0.0703233
+Epoch :22
+ Training Set Accuracy:38.4667%, MSE: 0.073346
+ Generalization Set Accuracy:33%, MSE: 0.0689981
+Epoch :23
+ Training Set Accuracy:39.2333%, MSE: 0.0721006
+ Generalization Set Accuracy:33.5%, MSE: 0.067704
+Epoch :24
+ Training Set Accuracy:39.7667%, MSE: 0.0708887
+ Generalization Set Accuracy:33.6%, MSE: 0.0664462
+Epoch :25
+ Training Set Accuracy:40.2667%, MSE: 0.0697246
+ Generalization Set Accuracy:34.4%, MSE: 0.0652605
+Epoch :26
+ Training Set Accuracy:40.5%, MSE: 0.0686209
+ Generalization Set Accuracy:34.8%, MSE: 0.0641411
+Epoch :27
+ Training Set Accuracy:40.5%, MSE: 0.0675773
+ Generalization Set Accuracy:35.3%, MSE: 0.0630822
+Epoch :28
+ Training Set Accuracy:40.8667%, MSE: 0.0665884
+ Generalization Set Accuracy:35.5%, MSE: 0.0620809
+Epoch :29
+ Training Set Accuracy:41.2333%, MSE: 0.0656489
+ Generalization Set Accuracy:36%, MSE: 0.0611341
+Epoch :30
+ Training Set Accuracy:41.4%, MSE: 0.0647568
+ Generalization Set Accuracy:36.6%, MSE: 0.0602397
+Epoch :31
+ Training Set Accuracy:41.7333%, MSE: 0.0639126
+ Generalization Set Accuracy:37%, MSE: 0.0593936
+Epoch :32
+ Training Set Accuracy:41.9%, MSE: 0.0631132
+ Generalization Set Accuracy:37.3%, MSE: 0.0585873
+Epoch :33
+ Training Set Accuracy:42.2667%, MSE: 0.062353
+ Generalization Set Accuracy:37.8%, MSE: 0.0578139
+Epoch :34
+ Training Set Accuracy:42.4%, MSE: 0.0616246
+ Generalization Set Accuracy:38%, MSE: 0.0570675
+Epoch :35
+ Training Set Accuracy:42.6667%, MSE: 0.0609165
+ Generalization Set Accuracy:38.4%, MSE: 0.0563531
+Epoch :36
+ Training Set Accuracy:42.8333%, MSE: 0.0602169
+ Generalization Set Accuracy:38.7%, MSE: 0.0557083
+Epoch :37
+ Training Set Accuracy:42.8667%, MSE: 0.0595403
+ Generalization Set Accuracy:39.2%, MSE: 0.0551179
+Epoch :38
+ Training Set Accuracy:43.1333%, MSE: 0.0588981
+ Generalization Set Accuracy:39.3%, MSE: 0.0545479
+Epoch :39
+ Training Set Accuracy:43.7%, MSE: 0.0582845
+ Generalization Set Accuracy:39.3%, MSE: 0.0539872
+Epoch :40
+ Training Set Accuracy:43.9667%, MSE: 0.0576923
+ Generalization Set Accuracy:39.5%, MSE: 0.0534333
+Epoch :41
+ Training Set Accuracy:44.4667%, MSE: 0.0571164
+ Generalization Set Accuracy:40.1%, MSE: 0.0528871
+Epoch :42
+ Training Set Accuracy:44.7333%, MSE: 0.0565555
+ Generalization Set Accuracy:40.6%, MSE: 0.0523651
+Epoch :43
+ Training Set Accuracy:45.0667%, MSE: 0.0560124
+ Generalization Set Accuracy:40.8%, MSE: 0.0518797
+Epoch :44
+ Training Set Accuracy:45.1333%, MSE: 0.055488
+ Generalization Set Accuracy:41.4%, MSE: 0.0514262
+Epoch :45
+ Training Set Accuracy:45.4%, MSE: 0.0549812
+ Generalization Set Accuracy:41.6%, MSE: 0.0509983
+Epoch :46
+ Training Set Accuracy:45.6333%, MSE: 0.0544906
+ Generalization Set Accuracy:41.8%, MSE: 0.0505918
+Epoch :47
+ Training Set Accuracy:46%, MSE: 0.0540152
+ Generalization Set Accuracy:43.1%, MSE: 0.0502041
+Epoch :48
+ Training Set Accuracy:46.2333%, MSE: 0.0535542
+ Generalization Set Accuracy:43.5%, MSE: 0.0498338
+Epoch :49
+ Training Set Accuracy:46.6667%, MSE: 0.0531072
+ Generalization Set Accuracy:43.8%, MSE: 0.0494803
+Epoch :50
+ Training Set Accuracy:46.7333%, MSE: 0.0526738
+ Generalization Set Accuracy:44.1%, MSE: 0.0491432
+Epoch :51
+ Training Set Accuracy:47.2333%, MSE: 0.052254
+ Generalization Set Accuracy:44.2%, MSE: 0.0488229
+Epoch :52
+ Training Set Accuracy:47.5%, MSE: 0.0518477
+ Generalization Set Accuracy:44.9%, MSE: 0.0485203
+Epoch :53
+ Training Set Accuracy:47.8333%, MSE: 0.0514546
+ Generalization Set Accuracy:45.5%, MSE: 0.0482368
+Epoch :54
+ Training Set Accuracy:48.0667%, MSE: 0.0510744
+ Generalization Set Accuracy:45.9%, MSE: 0.0479739
+Epoch :55
+ Training Set Accuracy:48.2%, MSE: 0.0507062
+ Generalization Set Accuracy:46.6%, MSE: 0.0477326
+Epoch :56
+ Training Set Accuracy:48.5%, MSE: 0.0503487
+ Generalization Set Accuracy:46.7%, MSE: 0.0475113
+Epoch :57
+ Training Set Accuracy:48.7667%, MSE: 0.0499998
+ Generalization Set Accuracy:46.8%, MSE: 0.0473037
+Epoch :58
+ Training Set Accuracy:49.0667%, MSE: 0.0496567
+ Generalization Set Accuracy:47.2%, MSE: 0.0470978
+Epoch :59
+ Training Set Accuracy:49.3667%, MSE: 0.0493166
+ Generalization Set Accuracy:47.3%, MSE: 0.0468803
+Epoch :60
+ Training Set Accuracy:49.6%, MSE: 0.0489766
+ Generalization Set Accuracy:47.6%, MSE: 0.0466433
+Epoch :61
+ Training Set Accuracy:49.7667%, MSE: 0.0486341
+ Generalization Set Accuracy:48%, MSE: 0.0463865
+Epoch :62
+ Training Set Accuracy:49.9667%, MSE: 0.0482873
+ Generalization Set Accuracy:48.7%, MSE: 0.0461153
+Epoch :63
+ Training Set Accuracy:50.1%, MSE: 0.0479374
+ Generalization Set Accuracy:49.1%, MSE: 0.0458392
+Epoch :64
+ Training Set Accuracy:50.1667%, MSE: 0.0475888
+ Generalization Set Accuracy:49.3%, MSE: 0.0455657
+Epoch :65
+ Training Set Accuracy:50.3667%, MSE: 0.0472466
+ Generalization Set Accuracy:49.6%, MSE: 0.0452981
+Epoch :66
+ Training Set Accuracy:50.5667%, MSE: 0.0469135
+ Generalization Set Accuracy:49.4%, MSE: 0.0450366
+Epoch :67
+ Training Set Accuracy:51%, MSE: 0.0465899
+ Generalization Set Accuracy:49.3%, MSE: 0.044781
+Epoch :68
+ Training Set Accuracy:51.3333%, MSE: 0.0462748
+ Generalization Set Accuracy:49.8%, MSE: 0.044531
+Epoch :69
+ Training Set Accuracy:51.5667%, MSE: 0.045967
+ Generalization Set Accuracy:49.7%, MSE: 0.0442863
+Epoch :70
+ Training Set Accuracy:51.7333%, MSE: 0.0456654
+ Generalization Set Accuracy:50.1%, MSE: 0.044047
+Epoch :71
+ Training Set Accuracy:51.8667%, MSE: 0.0453689
+ Generalization Set Accuracy:50.2%, MSE: 0.0438133
+Epoch :72
+ Training Set Accuracy:52.0667%, MSE: 0.0450772
+ Generalization Set Accuracy:50.4%, MSE: 0.0435862
+Epoch :73
+ Training Set Accuracy:52.3667%, MSE: 0.0447906
+ Generalization Set Accuracy:50.4%, MSE: 0.0433675
+Epoch :74
+ Training Set Accuracy:52.5333%, MSE: 0.0445096
+ Generalization Set Accuracy:50.5%, MSE: 0.0431584
+Epoch :75
+ Training Set Accuracy:52.7%, MSE: 0.0442345
+ Generalization Set Accuracy:50.7%, MSE: 0.0429587
+Epoch :76
+ Training Set Accuracy:53.0333%, MSE: 0.0439653
+ Generalization Set Accuracy:50.7%, MSE: 0.0427664
+Epoch :77
+ Training Set Accuracy:53.4%, MSE: 0.0437019
+ Generalization Set Accuracy:50.8%, MSE: 0.0425783
+Epoch :78
+ Training Set Accuracy:53.6333%, MSE: 0.0434444
+ Generalization Set Accuracy:50.9%, MSE: 0.0423921
+Epoch :79
+ Training Set Accuracy:53.7667%, MSE: 0.0431927
+ Generalization Set Accuracy:51.1%, MSE: 0.0422072
+Epoch :80
+ Training Set Accuracy:53.9333%, MSE: 0.0429468
+ Generalization Set Accuracy:51.2%, MSE: 0.0420243
+Epoch :81
+ Training Set Accuracy:54.2333%, MSE: 0.0427064
+ Generalization Set Accuracy:51.3%, MSE: 0.0418443
+Epoch :82
+ Training Set Accuracy:54.3333%, MSE: 0.0424713
+ Generalization Set Accuracy:51.6%, MSE: 0.0416677
+Epoch :83
+ Training Set Accuracy:54.5667%, MSE: 0.0422412
+ Generalization Set Accuracy:51.8%, MSE: 0.0414948
+Epoch :84
+ Training Set Accuracy:54.7333%, MSE: 0.0420159
+ Generalization Set Accuracy:52%, MSE: 0.0413257
+Epoch :85
+ Training Set Accuracy:54.8%, MSE: 0.0417953
+ Generalization Set Accuracy:52.2%, MSE: 0.0411603
+Epoch :86
+ Training Set Accuracy:55%, MSE: 0.0415792
+ Generalization Set Accuracy:52.4%, MSE: 0.0409987
+Epoch :87
+ Training Set Accuracy:55.2667%, MSE: 0.0413675
+ Generalization Set Accuracy:52.5%, MSE: 0.0408405
+Epoch :88
+ Training Set Accuracy:55.5333%, MSE: 0.04116
+ Generalization Set Accuracy:52.9%, MSE: 0.0406856
+Epoch :89
+ Training Set Accuracy:55.9%, MSE: 0.0409565
+ Generalization Set Accuracy:52.8%, MSE: 0.0405337
+Epoch :90
+ Training Set Accuracy:56.0667%, MSE: 0.040757
+ Generalization Set Accuracy:52.8%, MSE: 0.0403847
+Epoch :91
+ Training Set Accuracy:56.2333%, MSE: 0.0405611
+ Generalization Set Accuracy:52.8%, MSE: 0.0402384
+Epoch :92
+ Training Set Accuracy:56.2667%, MSE: 0.0403688
+ Generalization Set Accuracy:52.8%, MSE: 0.0400948
+Epoch :93
+ Training Set Accuracy:56.4333%, MSE: 0.0401801
+ Generalization Set Accuracy:53%, MSE: 0.0399541
+Epoch :94
+ Training Set Accuracy:56.7333%, MSE: 0.0399949
+ Generalization Set Accuracy:53%, MSE: 0.0398163
+Epoch :95
+ Training Set Accuracy:56.9%, MSE: 0.0398134
+ Generalization Set Accuracy:53.2%, MSE: 0.0396817
+Epoch :96
+ Training Set Accuracy:57.0333%, MSE: 0.0396357
+ Generalization Set Accuracy:53.3%, MSE: 0.0395505
+Epoch :97
+ Training Set Accuracy:56.9667%, MSE: 0.0394618
+ Generalization Set Accuracy:53.3%, MSE: 0.0394227
+Epoch :98
+ Training Set Accuracy:57.2%, MSE: 0.0392916
+ Generalization Set Accuracy:53.4%, MSE: 0.0392985
+Epoch :99
+ Training Set Accuracy:57.5333%, MSE: 0.0391252
+ Generalization Set Accuracy:53.4%, MSE: 0.0391782
+Epoch :100
+ Training Set Accuracy:57.6333%, MSE: 0.0389623
+ Generalization Set Accuracy:53.5%, MSE: 0.0390617
+Epoch :101
+ Training Set Accuracy:57.8%, MSE: 0.0388028
+ Generalization Set Accuracy:53.4%, MSE: 0.0389492
+Epoch :102
+ Training Set Accuracy:58.1%, MSE: 0.0386466
+ Generalization Set Accuracy:53.4%, MSE: 0.0388407
+Epoch :103
+ Training Set Accuracy:58.2333%, MSE: 0.0384933
+ Generalization Set Accuracy:53.5%, MSE: 0.0387364
+Epoch :104
+ Training Set Accuracy:58.4%, MSE: 0.0383427
+ Generalization Set Accuracy:53.7%, MSE: 0.0386364
+Epoch :105
+ Training Set Accuracy:58.4667%, MSE: 0.0381947
+ Generalization Set Accuracy:53.7%, MSE: 0.0385409
+Epoch :106
+ Training Set Accuracy:58.6667%, MSE: 0.0380491
+ Generalization Set Accuracy:53.8%, MSE: 0.0384502
+Epoch :107
+ Training Set Accuracy:58.8667%, MSE: 0.0379056
+ Generalization Set Accuracy:54.1%, MSE: 0.0383645
+Epoch :108
+ Training Set Accuracy:59%, MSE: 0.0377643
+ Generalization Set Accuracy:54.2%, MSE: 0.0382837
+Epoch :109
+ Training Set Accuracy:59.3333%, MSE: 0.0376251
+ Generalization Set Accuracy:54.5%, MSE: 0.0382066
+Epoch :110
+ Training Set Accuracy:59.5333%, MSE: 0.037488
+ Generalization Set Accuracy:54.6%, MSE: 0.0381321
+Epoch :111
+ Training Set Accuracy:59.5%, MSE: 0.037353
+ Generalization Set Accuracy:54.9%, MSE: 0.038059
+Epoch :112
+ Training Set Accuracy:59.6%, MSE: 0.0372203
+ Generalization Set Accuracy:54.9%, MSE: 0.0379868
+Epoch :113
+ Training Set Accuracy:59.6667%, MSE: 0.0370898
+ Generalization Set Accuracy:54.9%, MSE: 0.0379156
+Epoch :114
+ Training Set Accuracy:59.8333%, MSE: 0.0369615
+ Generalization Set Accuracy:55%, MSE: 0.0378454
+Epoch :115
+ Training Set Accuracy:59.8%, MSE: 0.0368354
+ Generalization Set Accuracy:55.2%, MSE: 0.0377765
+Epoch :116
+ Training Set Accuracy:59.9%, MSE: 0.0367115
+ Generalization Set Accuracy:55.3%, MSE: 0.0377089
+Epoch :117
+ Training Set Accuracy:60.0667%, MSE: 0.0365897
+ Generalization Set Accuracy:55.5%, MSE: 0.0376424
+Epoch :118
+ Training Set Accuracy:60.5%, MSE: 0.0364699
+ Generalization Set Accuracy:55.5%, MSE: 0.0375773
+Epoch :119
+ Training Set Accuracy:60.7%, MSE: 0.036352
+ Generalization Set Accuracy:55.5%, MSE: 0.0375137
+Epoch :120
+ Training Set Accuracy:60.9%, MSE: 0.0362359
+ Generalization Set Accuracy:55.5%, MSE: 0.0374514
+Epoch :121
+ Training Set Accuracy:60.9333%, MSE: 0.0361216
+ Generalization Set Accuracy:55.4%, MSE: 0.0373903
+Epoch :122
+ Training Set Accuracy:61.1%, MSE: 0.036009
+ Generalization Set Accuracy:55.4%, MSE: 0.0373298
+Epoch :123
+ Training Set Accuracy:61.3%, MSE: 0.035898
+ Generalization Set Accuracy:55.4%, MSE: 0.0372697
+Epoch :124
+ Training Set Accuracy:61.4333%, MSE: 0.0357886
+ Generalization Set Accuracy:55.4%, MSE: 0.0372101
+Epoch :125
+ Training Set Accuracy:61.6%, MSE: 0.0356805
+ Generalization Set Accuracy:55.6%, MSE: 0.0371512
+Epoch :126
+ Training Set Accuracy:61.6%, MSE: 0.0355738
+ Generalization Set Accuracy:55.5%, MSE: 0.0370932
+Epoch :127
+ Training Set Accuracy:61.6333%, MSE: 0.0354681
+ Generalization Set Accuracy:55.9%, MSE: 0.0370363
+Epoch :128
+ Training Set Accuracy:61.7667%, MSE: 0.0353636
+ Generalization Set Accuracy:55.8%, MSE: 0.0369802
+Epoch :129
+ Training Set Accuracy:61.8667%, MSE: 0.03526
+ Generalization Set Accuracy:56%, MSE: 0.036925
+Epoch :130
+ Training Set Accuracy:62%, MSE: 0.0351575
+ Generalization Set Accuracy:56%, MSE: 0.0368702
+Epoch :131
+ Training Set Accuracy:62.1333%, MSE: 0.035056
+ Generalization Set Accuracy:56.2%, MSE: 0.0368157
+Epoch :132
+ Training Set Accuracy:62.2%, MSE: 0.0349555
+ Generalization Set Accuracy:56.3%, MSE: 0.0367612
+Epoch :133
+ Training Set Accuracy:62.3667%, MSE: 0.0348563
+ Generalization Set Accuracy:56.9%, MSE: 0.0367063
+Epoch :134
+ Training Set Accuracy:62.4333%, MSE: 0.0347583
+ Generalization Set Accuracy:57%, MSE: 0.0366508
+Epoch :135
+ Training Set Accuracy:62.5333%, MSE: 0.0346616
+ Generalization Set Accuracy:57.1%, MSE: 0.0365943
+Epoch :136
+ Training Set Accuracy:62.5%, MSE: 0.0345662
+ Generalization Set Accuracy:57.3%, MSE: 0.0365366
+Epoch :137
+ Training Set Accuracy:62.5333%, MSE: 0.034472
+ Generalization Set Accuracy:57.3%, MSE: 0.0364778
+Epoch :138
+ Training Set Accuracy:62.6333%, MSE: 0.0343789
+ Generalization Set Accuracy:57.3%, MSE: 0.036418
+Epoch :139
+ Training Set Accuracy:62.6667%, MSE: 0.0342866
+ Generalization Set Accuracy:57.5%, MSE: 0.0363575
+Epoch :140
+ Training Set Accuracy:62.6667%, MSE: 0.0341948
+ Generalization Set Accuracy:57.5%, MSE: 0.0362965
+Epoch :141
+ Training Set Accuracy:62.7667%, MSE: 0.0341034
+ Generalization Set Accuracy:
