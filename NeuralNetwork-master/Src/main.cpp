@@ -64,14 +64,17 @@ int main( int argc, char* argv[] )
 
     // Create neural network trainer
     BPN::NetworkTrainer::Settings trainerSettings;
-    trainerSettings.m_learningRate = 0.001;
+    trainerSettings.m_learningRate = 0.01;
     trainerSettings.m_momentum = 0.9;
     trainerSettings.m_useBatchLearning = false;
     trainerSettings.m_maxEpochs = 200;
-    trainerSettings.m_desiredAccuracy = 90;
+    trainerSettings.m_desiredAccuracy = 65;
 
     BPN::NetworkTrainer trainer( trainerSettings, &nn );
     trainer.Train( dataReader.GetTrainingData() );
+
+	std::vector<double> input = { 2, 8, 3, 5, 1, 8, 13, 0, 6, 6, 10, 8, 0, 8, 0, 8 };
+	std::vector<int32_t> output = nn.Evaluate(input);
 
     return 0;
 }

@@ -63,7 +63,7 @@ namespace BPN
         // Train network using training dataset for training and generalization dataset for testing
         //--------------------------------------------------------------------------------------------------------
 
-        while ( ( m_trainingSetAccuracy < m_desiredAccuracy || m_generalizationSetAccuracy < m_desiredAccuracy ) && m_currentEpoch < m_maxEpochs )
+		while ( ( m_trainingSetAccuracy < m_desiredAccuracy && m_generalizationSetAccuracy < m_desiredAccuracy ) && m_currentEpoch < m_maxEpochs )
         {
             // Use training set to train network
             RunEpoch( trainingData.m_trainingSet );
