@@ -23,18 +23,19 @@
 #include "Debug/DebugConsole.h"
 
 //-------------------------- ctor ---------------------------------------------
-Raven_Bot::Raven_Bot(Raven_Game* world,Vector2D pos):
+Raven_Bot::Raven_Bot(Raven_Game* world, Vector2D pos) :
 
-  MovingEntity(pos,
-               script->GetDouble("Bot_Scale"),
-               Vector2D(0,0),
-               script->GetDouble("Bot_MaxSpeed"),
-               Vector2D(1,0),
-               script->GetDouble("Bot_Mass"),
-               Vector2D(script->GetDouble("Bot_Scale"),script->GetDouble("Bot_Scale")),
-               script->GetDouble("Bot_MaxHeadTurnRate"),
-               script->GetDouble("Bot_MaxForce")),
-                 
+	MovingEntity(pos,
+		script->GetDouble("Bot_Scale"),
+		Vector2D(0, 0),
+		script->GetDouble("Bot_MaxSpeed"),
+		Vector2D(1, 0),
+		script->GetDouble("Bot_Mass"),
+		Vector2D(script->GetDouble("Bot_Scale"), script->GetDouble("Bot_Scale")),
+		script->GetDouble("Bot_MaxHeadTurnRate"),
+		script->GetDouble("Bot_MaxForce")),
+				 shotThisFrame(false),
+				 learner(false),
                  m_iMaxHealth(script->GetInt("Bot_MaxHealth")),
                  m_iHealth(script->GetInt("Bot_MaxHealth")),
                  m_pPathPlanner(NULL),
@@ -140,36 +141,73 @@ void Raven_Bot::Update()
 	if (!isPossessed())
 	{
 		//appraise and arbitrate between all possible high level goals
+		
 		if (m_pGoalArbitrationRegulator->isReady())
 		{
-		   m_pBrain->Arbitrate(); 
+			m_pBrain->Arbitrate();
 		}
 
 		//update the sensory memory with any visual stimulus
 		if (m_pVisionUpdateRegulator->isReady())
 		{
-		  m_pSensoryMem->UpdateVision();
+			m_pSensoryMem->UpdateVision();
 		}
-  
+
 		//select the appropriate weapon to use from the weapons currently in
 		//the inventory
 		if (m_pWeaponSelectionRegulator->isReady())
-		{       
-		  m_pWeaponSys->SelectWeapon();       
+		{
+			m_pWeaponSys->SelectWeapon();
 		}
-
 		//this method aims the bot's current weapon at the current target
 		//and takes a shot if a shot is possible
-		m_pWeaponSys->TakeAimAndShoot();
-
-	
+		if (!learner) {
+			m_pWeaponSys->TakeAimAndShoot();
+		}
+		
 	  }
 	else {
 		int length;
 		std::fstream myfile;
-		myfile.open("example.csv", std::ofstream::out | std::ofstream::app);
-		myfile << "This is the first cell in the first column.\n";
+		myfile.open("CSV/example.csv", std::ofstream::out | std::ofstream::app);
+
+		double distTarget = -1;
+		double visibleTarget = 0;
+		double timeVisibleTarget = 0;
+		double timehiddenTarget = -1;
+		double facingX = 0;
+		double facingY = 0;
+		double targetDirectionX = 0;
+		double targetDirectionY = 0;
+		double ammunition = 0;
+		double weaponType = type_blaster;
+		double targetHealth = -1;
+
+		if (m_pTargSys->isTargetPresent()) {
+			distTarget = (m_pTargSys->GetTarget()->Pos()).Distance(this->Pos());
+			visibleTarget = m_pTargSys->isTargetShootable();
+			timeVisibleTarget = m_pTargSys->GetTimeTargetHasBeenVisible();
+			timehiddenTarget = m_pTargSys->GetTimeTargetHasBeenOutOfView();
+
+			Vector2D normal = m_pTargSys->GetTarget()->Pos() - this->Pos();
+			normal.Normalize();
+			targetDirectionX = normal.x;
+			targetDirectionY = normal.y;
+
+			targetHealth = m_pTargSys->GetTarget()->Health();
+
+		}
+
+		facingX = this->Facing().x;
+		facingY = this->Facing().y;
+		Raven_Weapon* weapon = this->GetWeaponSys()->GetCurrentWeapon();
+		weaponType = m_pWeaponSys->GetWeaponType();
+		ammunition = m_pWeaponSys->GetAmmoRemainingForWeapon(weaponType);				
+		double shot = shotThisFrame ? 1 : 0;
+		myfile << distTarget<<","<<visibleTarget << "," << timeVisibleTarget << "," << timehiddenTarget << "," << facingX << "," << facingY
+		<< "," << targetDirectionX << "," << targetDirectionY << "," << ammunition << "," << weaponType << "," << targetHealth <<","<< shot <<"\n";
 		myfile.close();
+		this->shotThisFrame = false;
 	}
 }
 
@@ -395,6 +433,7 @@ void Raven_Bot::ChangeWeapon(unsigned int type)
 void Raven_Bot::FireWeapon(Vector2D pos)
 {
   m_pWeaponSys->ShootAt(pos);
+  shotThisFrame = true;
 }
 
 //----------------- CalculateExpectedTimeToReachPosition ----------------------

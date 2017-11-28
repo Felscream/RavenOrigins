@@ -40,6 +40,8 @@ private:
 
 private:
 
+	bool shotThisFrame;
+	bool learner;
   //alive, dead or spawning?
   Status                             m_Status;
 

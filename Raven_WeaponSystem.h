@@ -108,6 +108,8 @@ public:
 
   void          RenderCurrentWeapon()const;
   void          RenderDesirabilities()const;
+
+  unsigned int GetWeaponType();
 };
 
 #endif

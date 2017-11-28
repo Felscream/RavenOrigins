@@ -339,3 +339,7 @@ void Raven_WeaponSystem::RenderDesirabilities()const
       }
     }
 }
+
+unsigned int Raven_WeaponSystem::GetWeaponType(){
+	return GetCurrentWeapon()->GetType();
+}

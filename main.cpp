@@ -114,7 +114,7 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
 
 		
 		
-		mainTraining("CSV/test1.csv", 16, 16, 3);
+		//mainTraining("CSV/test1.csv", 16, 16, 3);
       }
 
       break;
