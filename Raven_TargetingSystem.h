@@ -21,7 +21,7 @@ class Raven_Bot;
 
 class Raven_TargetingSystem
 {
-private:
+protected:
 
   //the owner of this system
   Raven_Bot*  m_pOwner;
@@ -39,7 +39,7 @@ public:
   //if there are no opponents that have had their memory records updated
   //within the memory span of the owner then the current target is set
   //to null
-  void       Update();
+  virtual void       Update();
 
   //returns true if there is a currently assigned target
   bool       isTargetPresent()const{return m_pCurrentTarget != 0;}
@@ -62,7 +62,7 @@ public:
   double      GetTimeTargetHasBeenOutOfView()const;
   
   //returns a pointer to the target. null if no target current.
-  Raven_Bot* GetTarget()const{return m_pCurrentTarget;}
+  virtual Raven_Bot* GetTarget()const{return m_pCurrentTarget;}
 
   //sets the target pointer to null
   void       ClearTarget(){m_pCurrentTarget=0;}

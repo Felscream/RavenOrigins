@@ -268,6 +268,21 @@
     <ClCompile Include="Common\fuzzy\FuzzySet_Triangle.cpp">
       <Filter>AI\fuzzy logic\fuzzy set types</Filter>
     </ClCompile>
+    <ClCompile Include="TeamBot.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Team.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="TeamBotLeader.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Raven_TargetingSystemLeader.cpp">
+      <Filter>AI\Target Selection</Filter>
+    </ClCompile>
+    <ClCompile Include="Raven_TargetingSystemTeam.cpp">
+      <Filter>AI\Target Selection</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Raven_Bot.h">
@@ -605,6 +620,21 @@
     </ClInclude>
     <ClInclude Include="Common\fuzzy\FuzzySet_Triangle.h">
       <Filter>AI\fuzzy logic\fuzzy set types</Filter>
+    </ClInclude>
+    <ClInclude Include="Team.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="TeamBot.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="TeamBotLeader.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Raven_TargetingSystemLeader.h">
+      <Filter>AI\Target Selection</Filter>
+    </ClInclude>
+    <ClInclude Include="Raven_TargetingSystemTeam.h">
+      <Filter>AI\Target Selection</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
