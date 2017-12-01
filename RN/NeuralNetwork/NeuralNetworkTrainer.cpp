@@ -59,7 +59,7 @@ namespace BPN
 		debug_con << "==========================================================================";
 		debug_con << " LR: " << m_learningRate << ", Momentum: " << m_momentum << ", Max Epochs: " << m_maxEpochs;
 		debug_con << " " << m_pNetwork->m_numInputs << " Input Neurons, " << m_pNetwork->m_numHidden << " Hidden Neurons, " << m_pNetwork->m_numOutputs << " Output Neurons";
-		debug_con << "==========================================================================";
+		debug_con << "==========================================================================" << "";
 
         // Train network using training dataset for training and generalization dataset for testing
         //--------------------------------------------------------------------------------------------------------
@@ -83,9 +83,9 @@ namespace BPN
         GetSetAccuracyAndMSE( trainingData.m_validationSet, m_validationSetAccuracy, m_validationSetMSE );
 
         // Print validation accuracy and MSE
-		debug_con << "Training Complete!!! - > Elapsed Epochs: " << m_currentEpoch ;
-		debug_con << " Validation Set Accuracy: " << m_validationSetAccuracy ;
-		debug_con << " Validation Set MSE: " << m_validationSetMSE;
+		debug_con << "Training Complete!!! - > Elapsed Epochs: " << m_currentEpoch << "";
+		debug_con << " Validation Set Accuracy: " << m_validationSetAccuracy << "";
+		debug_con << " Validation Set MSE: " << m_validationSetMSE << "";
     }
 
     double NetworkTrainer::GetHiddenErrorGradient( int32_t hiddenIdx ) const

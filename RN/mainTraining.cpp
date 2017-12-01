@@ -31,36 +31,36 @@ std::string GetCurrentWorkingDir(void) {
 
 //-------------------------------------------------------------------------
 
-BPN::Network* mainTraining(std::string path, uint32_t in, uint32_t hidden, uint32_t out)
+int mainTraining(std::string path, BPN::Network* nn)
 {
+	
+	std::string trainingDataPath = path;
+	uint32_t const numInputs = 11;
+	uint32_t const numHidden = 11;
+	uint32_t const numOutputs = 1;
 
-    std::string trainingDataPath = path;
-    uint32_t const numInputs = in;
-    uint32_t const numHidden = hidden;
-    uint32_t const numOutputs = out;
+	BPN::TrainingDataReader dataReader(trainingDataPath, numHidden, numOutputs);
+	if (!dataReader.ReadData())
+	{
+		return 0;
+	}
 
-    BPN::TrainingDataReader dataReader( trainingDataPath, numInputs, numOutputs );
-    if ( !dataReader.ReadData() )
-    {
-        return NULL;
-    }
+	//// Create neural network
+	/*BPN::Network::Settings networkSettings{ numInputs, numHidden, numOutputs };
+	BPN::Network nn(networkSettings);*/
 
-    // Create neural network
-    BPN::Network::Settings networkSettings{ numInputs, numHidden, numOutputs };
-    BPN::Network nn( networkSettings );
+	// Create neural network trainer
+	BPN::NetworkTrainer::Settings trainerSettings;
+	trainerSettings.m_learningRate = 0.001;
+	trainerSettings.m_momentum = 0.9;
+	trainerSettings.m_useBatchLearning = false;
+	trainerSettings.m_maxEpochs = 400;
+	trainerSettings.m_desiredAccuracy = 65;
 
-    // Create neural network trainer
-    BPN::NetworkTrainer::Settings trainerSettings;
-    trainerSettings.m_learningRate = 0.001;
-    trainerSettings.m_momentum = 0.9;
-    trainerSettings.m_useBatchLearning = false;
-    trainerSettings.m_maxEpochs = 200;
-    trainerSettings.m_desiredAccuracy = 65;
-
-    BPN::NetworkTrainer trainer( trainerSettings, &nn );
-    trainer.Train( dataReader.GetTrainingData() );
+	BPN::NetworkTrainer trainer(trainerSettings, nn);
+	trainer.Train(dataReader.GetTrainingData());
 
 	
 
-    return &nn;
+    return 1;
 }

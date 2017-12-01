@@ -231,6 +231,10 @@ public:
 		this->learner = true;
 		this->m_bPossessed = false;
 		this->trained = false;
+		uint32_t in = 11;
+		uint32_t out = 1;
+		BPN::Network::Settings networkSettings{ in, in, out };
+		this->nn = new BPN::Network(networkSettings);
   }
 };
 

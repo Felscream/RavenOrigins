@@ -87,13 +87,12 @@ Raven_Bot::Raven_Bot(Raven_Game* world, Vector2D pos) :
   timer = new PrecisionTimer(FrameRate);
   timeSinceLastShot = 0.0;
   timeSinceLastWrite = 0.0;
-  delay = 0.25;
+  delay = 1;
   //start the timer
   timer->Start();
 
   trained = false;
 }
-
 //-------------------------------- dtor ---------------------------------------
 //-----------------------------------------------------------------------------
 Raven_Bot::~Raven_Bot()
@@ -180,7 +179,7 @@ void Raven_Bot::Update()
 			{
 				uint32_t in = 11;
 				uint32_t out = 1;
-				nn = mainTraining("CSV/example.csv", in, in, out);
+				mainTraining("CSV/example.csv", this->nn);
 				this->trained = true;
 			}
 			else {
@@ -217,13 +216,14 @@ void Raven_Bot::Update()
 				weaponType = m_pWeaponSys->GetWeaponType();
 				ammunition = m_pWeaponSys->GetAmmoRemainingForWeapon(weaponType);
 
-				/*std::vector<double> input = { distTarget,  visibleTarget, timeVisibleTarget , timehiddenTarget , facingX , facingY
+				std::vector<double> input = { distTarget,  visibleTarget, timeVisibleTarget , timehiddenTarget , facingX , facingY
 					, targetDirectionX , targetDirectionY , ammunition , weaponType , targetHealth };
 
-				std::vector<int32_t> output = nn->Evaluate(input);*/
+				/*std::vector<int32_t> output = nn->Evaluate(input);*/
 
-				std::vector<double> input = { 1.0,  1.0, 1.0, 1.0 , 0.5 , 0.5, 0.7 , 0.3 , 45.0 , type_blaster , 45.0 };
+				//std::vector<double> const& input = { 1.0,  1.0, 1.0, 1.0 , 0.5 , 0.5, 0.7 , 0.3 , 45.0 , type_blaster , 45.0 };
 				std::vector<int32_t> output = nn->Evaluate(input);
+				debug_con << output[0] << "";
 				if (output[0] == 1)
 				{
 					m_pWeaponSys->TakeAimAndShoot();
