@@ -9,7 +9,6 @@
 #include "Goal_Explore.h"
 #include "Goal_GetItem.h"
 #include "Goal_Wander.h"
-#include "Goal_DodgeSidetoSide.h"
 #include "Raven_Goal_Types.h"
 #include "Goal_AttackTarget.h"
 
@@ -148,15 +147,6 @@ void Goal_Think::AddGoal_Explore()
     AddSubgoal( new Goal_Explore(m_pOwner));
   }
 }
-
-void Goal_Think::AddGoal_Strafe()
-{
-	if (notPresent(goal_strafe))
-	{
-		AddSubgoal(new Goal_DodgeSideToSide(m_pOwner));
-	}
-}
-
 
 void Goal_Think::AddGoal_GetItem(unsigned int ItemType)
 {

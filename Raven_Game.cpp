@@ -16,13 +16,15 @@
 #include "messaging/MessageDispatcher.h"
 #include "Raven_Messages.h"
 #include "GraveMarkers.h"
+#include "TeamBotLeader.h"
+#include "TeamBot.h"
 
 #include "armory/Raven_Projectile.h"
 #include "armory/Projectile_Rocket.h"
 #include "armory/Projectile_Pellet.h"
 #include "armory/Projectile_Slug.h"
 #include "armory/Projectile_Bolt.h"
-#include "Debug/DebugConsole.h"
+
 #include "goals/Goal_Think.h"
 #include "goals/Raven_Goal_Types.h"
 
@@ -107,9 +109,8 @@ void Raven_Game::Clear()
 void Raven_Game::Update()
 { 
   //don't update if the user has paused the game
-	if (m_bPaused) return;
-  
-	  
+  if (m_bPaused) return;
+
   m_pGraveMarkers->Update();
 
   //get any player keyboard input
@@ -148,10 +149,6 @@ void Raven_Game::Update()
   bool bSpawnPossible = true;
   
   std::list<Raven_Bot*>::iterator curBot = m_Bots.begin();
-  if ((*curBot)->GetTargetSys()->GetTarget() != NULL) {
-	  debug_con << (*curBot)->GetTargetSys()->GetTarget()->Pos() << "";
-  }
-  
   for (curBot; curBot != m_Bots.end(); ++curBot)
   {
     //if this bot's status is 'respawning' attempt to resurrect it from
@@ -198,75 +195,6 @@ void Raven_Game::Update()
 
     m_bRemoveABot = false;
   }
-
-  if (GetAsyncKeyState('Z') < 0) {
-	  if (GetAsyncKeyState('D') < 0) {
-		  Vector2D p(m_pSelectedBot->Pos().x + 1, m_pSelectedBot->Pos().y - 1);
-		  m_pSelectedBot->GetBrain()->RemoveAllSubgoals();
-		  m_pSelectedBot->GetBrain()->AddGoal_MoveToPosition(p);
-	  }
-	  else if (GetAsyncKeyState('Q') < 0) {
-		  Vector2D p(m_pSelectedBot->Pos().x - 1, m_pSelectedBot->Pos().y - 1);
-		  m_pSelectedBot->GetBrain()->RemoveAllSubgoals();
-		  m_pSelectedBot->GetBrain()->AddGoal_MoveToPosition(p);
-	  }
-	  else {
-		  Vector2D p(m_pSelectedBot->Pos().x, m_pSelectedBot->Pos().y - 1);
-		  m_pSelectedBot->GetBrain()->RemoveAllSubgoals();
-		  m_pSelectedBot->GetBrain()->AddGoal_MoveToPosition(p);
-	  }
-  }
-  else if (GetAsyncKeyState('D') < 0) {
-	  if (GetAsyncKeyState('Z') < 0) {
-		  Vector2D p(m_pSelectedBot->Pos().x + 1, m_pSelectedBot->Pos().y - 1);
-		  m_pSelectedBot->GetBrain()->RemoveAllSubgoals();
-		  m_pSelectedBot->GetBrain()->AddGoal_MoveToPosition(p);
-	  }
-	  else if (GetAsyncKeyState('S') < 0) {
-		  Vector2D p(m_pSelectedBot->Pos().x + 1, m_pSelectedBot->Pos().y + 1);
-		  m_pSelectedBot->GetBrain()->RemoveAllSubgoals();
-		  m_pSelectedBot->GetBrain()->AddGoal_MoveToPosition(p);
-	  }
-	  else {
-		  Vector2D p(m_pSelectedBot->Pos().x + 1, m_pSelectedBot->Pos().y);
-		  m_pSelectedBot->GetBrain()->RemoveAllSubgoals();
-		  m_pSelectedBot->GetBrain()->AddGoal_MoveToPosition(p);
-	  }
-  }
-  else if (GetAsyncKeyState('Q') < 0) {
-	  if (GetAsyncKeyState('Z') < 0) {
-		  Vector2D p(m_pSelectedBot->Pos().x - 1, m_pSelectedBot->Pos().y - 1);
-		  m_pSelectedBot->GetBrain()->RemoveAllSubgoals();
-		  m_pSelectedBot->GetBrain()->AddGoal_MoveToPosition(p);
-	  }
-	  else if (GetAsyncKeyState('S') < 0) {
-		  Vector2D p(m_pSelectedBot->Pos().x - 1, m_pSelectedBot->Pos().y + 1);
-		  m_pSelectedBot->GetBrain()->RemoveAllSubgoals();
-		  m_pSelectedBot->GetBrain()->AddGoal_MoveToPosition(p);
-	  }
-	  else {
-		  Vector2D p(m_pSelectedBot->Pos().x - 1, m_pSelectedBot->Pos().y);
-		  m_pSelectedBot->GetBrain()->RemoveAllSubgoals();
-		  m_pSelectedBot->GetBrain()->AddGoal_MoveToPosition(p);
-	  }
-  }
-  else if (GetAsyncKeyState('S') < 0) {
-	  if (GetAsyncKeyState('D') < 0) {
-		  Vector2D p(m_pSelectedBot->Pos().x + 1, m_pSelectedBot->Pos().y + 1);
-		  m_pSelectedBot->GetBrain()->RemoveAllSubgoals();
-		  m_pSelectedBot->GetBrain()->AddGoal_MoveToPosition(p);
-	  }
-	  else if (GetAsyncKeyState('Q') < 0) {
-		  Vector2D p(m_pSelectedBot->Pos().x - 1, m_pSelectedBot->Pos().y + 1);
-		  m_pSelectedBot->GetBrain()->RemoveAllSubgoals();
-		  m_pSelectedBot->GetBrain()->AddGoal_MoveToPosition(p);
-	  }
-	  else {
-		  Vector2D p(m_pSelectedBot->Pos().x, m_pSelectedBot->Pos().y + 1);
-		  m_pSelectedBot->GetBrain()->RemoveAllSubgoals();
-		  m_pSelectedBot->GetBrain()->AddGoal_MoveToPosition(p);
-	  }
-  }
 }
 
 
@@ -306,16 +234,15 @@ bool Raven_Game::AttemptToAddBot(Raven_Bot* pBot)
     if (bAvailable)
     {  
       pBot->Spawn(pos);
-	  if (pBot == m_pSelectedBot) {
-		  m_pSelectedBot->TakePossession();
-		  m_pSelectedBot->GetBrain()->RemoveAllSubgoals();
-	  }
+
       return true;   
     }
   }
 
   return false;
 }
+
+
 
 //-------------------------- AddBots --------------------------------------
 //
@@ -364,6 +291,33 @@ void Raven_Game::NotifyAllBotsOfRemoval(Raven_Bot* pRemovedBot)const
 
     }
 }
+
+void Raven_Game::AddTeam(int size) {
+	Team* team = new Team();
+	Raven_Bot* currentBot;
+	int i;
+
+	currentBot = new TeamBotLeader(this, Vector2D(), team);
+	currentBot->GetSteering()->WallAvoidanceOn();
+	team->SetLeader((TeamBotLeader*)currentBot);
+
+	m_Bots.push_back(currentBot);
+	EntityMgr->RegisterEntity(currentBot);
+	AttemptToAddBot(currentBot);
+
+	for (i = 1; i < size; i++) {
+		currentBot = new TeamBot(this, Vector2D(), team);
+		currentBot->GetSteering()->WallAvoidanceOn();
+		currentBot->GetSteering()->SeparationOn();
+		currentBot->GetSteering()->SeekOn();
+
+		team->AddMember((TeamBot*)currentBot);
+		m_Bots.push_back(currentBot);
+		EntityMgr->RegisterEntity(currentBot);
+		AttemptToAddBot(currentBot);
+	}	
+}
+
 //-------------------------------RemoveBot ------------------------------------
 //
 //  removes the last bot to be added from the game
@@ -469,12 +423,15 @@ bool Raven_Game::LoadMap(const std::string& filename)
   //make sure the entity manager is reset
   EntityMgr->Reset();
 
+ 
 
   //load the new map data
   if (m_pMap->LoadMap(filename))
   { 
-    AddBots(script->GetInt("NumBots"));
-	m_pSelectedBot = m_Bots.front();
+    //AddBots(/*script->GetInt("NumBots")*/1);
+	AddTeam(2);
+	AddTeam(2);
+
     return true;
   }
 
@@ -535,7 +492,7 @@ void Raven_Game::ClickRightMouseButton(POINTS p)
   {
     //if the shift key is pressed down at the same time as clicking then the
     //movement command will be queued
-    if (IS_KEY_PRESSED('A'))
+    if (IS_KEY_PRESSED('Q'))
     {
       m_pSelectedBot->GetBrain()->QueueGoal_MoveToPosition(POINTStoVector(p));
     }
@@ -864,7 +821,7 @@ void Raven_Game::Render()
       m_pSelectedBot->GetWeaponSys()->RenderDesirabilities();
     }
 
-   if (IS_KEY_PRESSED('A') && m_pSelectedBot->isPossessed())
+   if (IS_KEY_PRESSED('Q') && m_pSelectedBot->isPossessed())
     {
       gdi->TextColor(255,0,0);
       gdi->TextAtPos(GetClientCursorPosition(), "Queuing");

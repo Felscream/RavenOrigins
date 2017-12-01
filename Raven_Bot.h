@@ -38,10 +38,8 @@ private:
 
   enum Status{alive, dead, spawning};
 
-private:
+protected:
 
-	bool shotThisFrame;
-	bool learner;
   //alive, dead or spawning?
   Status                             m_Status;
 

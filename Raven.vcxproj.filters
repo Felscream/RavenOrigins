@@ -77,9 +77,6 @@
     <Filter Include="Common">
       <UniqueIdentifier>{f3f5ab42-49d8-4348-aa63-66655abd9be1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="RN">
-      <UniqueIdentifier>{47440ef7-37aa-4d64-bff2-2d727cf0a163}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -271,17 +268,20 @@
     <ClCompile Include="Common\fuzzy\FuzzySet_Triangle.cpp">
       <Filter>AI\fuzzy logic\fuzzy set types</Filter>
     </ClCompile>
-    <ClCompile Include="RN\NeuralNetwork\TrainingDataReader.cpp">
-      <Filter>RN</Filter>
+    <ClCompile Include="TeamBot.cpp">
+      <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="RN\NeuralNetwork\NeuralNetworkTrainer.cpp">
-      <Filter>RN</Filter>
+    <ClCompile Include="Team.cpp">
+      <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="RN\NeuralNetwork\NeuralNetwork.cpp">
-      <Filter>RN</Filter>
+    <ClCompile Include="TeamBotLeader.cpp">
+      <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="RN\mainTraining.cpp">
-      <Filter>RN</Filter>
+    <ClCompile Include="Raven_TargetingSystemLeader.cpp">
+      <Filter>AI\Target Selection</Filter>
+    </ClCompile>
+    <ClCompile Include="Raven_TargetingSystemTeam.cpp">
+      <Filter>AI\Target Selection</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -621,17 +621,20 @@
     <ClInclude Include="Common\fuzzy\FuzzySet_Triangle.h">
       <Filter>AI\fuzzy logic\fuzzy set types</Filter>
     </ClInclude>
-    <ClInclude Include="RN\NeuralNetwork\NeuralNetwork.h">
-      <Filter>RN</Filter>
+    <ClInclude Include="Team.h">
+      <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="RN\NeuralNetwork\NeuralNetworkTrainer.h">
-      <Filter>RN</Filter>
+    <ClInclude Include="TeamBot.h">
+      <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="RN\NeuralNetwork\TrainingDataReader.h">
-      <Filter>RN</Filter>
+    <ClInclude Include="TeamBotLeader.h">
+      <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="RN\cmdParser.h">
-      <Filter>RN</Filter>
+    <ClInclude Include="Raven_TargetingSystemLeader.h">
+      <Filter>AI\Target Selection</Filter>
+    </ClInclude>
+    <ClInclude Include="Raven_TargetingSystemTeam.h">
+      <Filter>AI\Target Selection</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

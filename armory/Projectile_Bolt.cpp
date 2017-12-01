@@ -36,9 +36,7 @@ void Bolt::Update()
 {
   if (!m_bImpacted)
   {
-	  Vector2D projectileHeading = (m_vTarget - m_vOrigin);
-	  Vector2D temp = Vector2D(projectileHeading.x / projectileHeading.Length(), projectileHeading.y / projectileHeading.Length());
-    m_vVelocity = MaxSpeed() * temp;
+    m_vVelocity = MaxSpeed() * Heading();
 
     //make sure vehicle does not exceed maximum velocity
     m_vVelocity.Truncate(m_dMaxSpeed);

@@ -9,7 +9,6 @@
 #include "Raven_Game.h"
 #include "Raven_UserOptions.h"
 #include "2D/transformations.h"
-#include "math.h"
 
 
 
@@ -203,7 +202,6 @@ void Raven_WeaponSystem::TakeAimAndShoot()const
             m_dReactionTime) &&
            m_pOwner->hasLOSto(AimingPos) )
       {
-
         AddNoiseToAim(AimingPos);
 
         GetCurrentWeapon()->ShootAt(AimingPos);
@@ -219,7 +217,6 @@ void Raven_WeaponSystem::TakeAimAndShoot()const
            (m_pOwner->GetTargetSys()->GetTimeTargetHasBeenVisible() >
             m_dReactionTime) )
       {
-
         AddNoiseToAim(AimingPos);
         
         GetCurrentWeapon()->ShootAt(AimingPos);
@@ -244,14 +241,8 @@ void Raven_WeaponSystem::TakeAimAndShoot()const
 void Raven_WeaponSystem::AddNoiseToAim(Vector2D& AimingPos)const
 {
   Vector2D toPos = AimingPos - m_pOwner->Pos();
-  double targetSpeed = m_pOwner->GetTargetBot()->Speed();
-  double targetVisibleTime = m_pOwner->GetTargetSys()->GetTimeTargetHasBeenVisible();
-  double DistToTarget = toPos.Length();
 
-  double precision = m_pCurrentWeapon->GetPrecision(DistToTarget, targetSpeed, targetVisibleTime);
-  int sign = RandBool() ? 1 : -1;
-
-  Vec2DRotateAroundOrigin(toPos, RandInRange(-m_dAimAccuracy, m_dAimAccuracy) + sign * precision/8);
+  Vec2DRotateAroundOrigin(toPos, RandInRange(-m_dAimAccuracy, m_dAimAccuracy));
 
   AimingPos = toPos + m_pOwner->Pos();
 }
@@ -338,8 +329,4 @@ void Raven_WeaponSystem::RenderDesirabilities()const
         offset+=15;
       }
     }
-}
-
-unsigned int Raven_WeaponSystem::GetWeaponType(){
-	return GetCurrentWeapon()->GetType();
 }
