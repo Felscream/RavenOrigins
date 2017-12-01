@@ -148,9 +148,7 @@ void Raven_Game::Update()
   bool bSpawnPossible = true;
   
   std::list<Raven_Bot*>::iterator curBot = m_Bots.begin();
-  if ((*curBot)->GetTargetSys()->GetTarget() != NULL) {
-	  debug_con << (*curBot)->GetTargetSys()->GetTarget()->Pos() << "";
-  }
+  
   
   for (curBot; curBot != m_Bots.end(); ++curBot)
   {

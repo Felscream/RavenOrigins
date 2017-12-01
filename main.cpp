@@ -114,7 +114,7 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
 
 		
 		
-		//mainTraining("CSV/test1.csv", 16, 16, 3);
+		
       }
 
       break;
@@ -334,6 +334,10 @@ LRESULT CALLBACK WindowProc (HWND   hwnd,
         CheckMenuItemAppropriately(hwnd, IDM_BOTS_SHOW_GOAL_Q, UserOptions->m_bShowGoalsOfSelectedBot);
 
         break;
+
+	  case IDM_RN:
+		  g_pRaven->GetFirstBot()->SetVarRN();
+		  
 
       }//end switch
     }

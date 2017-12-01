@@ -5,8 +5,7 @@
 //https://takinginitiative.wordpress.com/2008/04/23/basic-neural-network-tutorial-c-implementation-and-source-code/
 //-------------------------------------------------------------------------
 
-#include "NeuralNetwork/neuralNetworkTrainer.h"
-#include "NeuralNetwork/TrainingDataReader.h"
+
 #include "mainTraining.h"
 
 #if _MSC_VER
@@ -32,20 +31,8 @@ std::string GetCurrentWorkingDir(void) {
 
 //-------------------------------------------------------------------------
 
-int mainTraining(std::string path, uint32_t in, uint32_t hidden, uint32_t out)
+BPN::Network* mainTraining(std::string path, uint32_t in, uint32_t hidden, uint32_t out)
 {
-	//std::cout << GetCurrentWorkingDir() << std::endl;
-   /* cli::Parser cmdParser(argc, argv );
-    cmdParser.set_required<std::string>( "d", "DataFile", "Path to training data csv file." );
-    cmdParser.set_required<uint32_t>( "in", "NumInputs", "Num Input neurons." );
-    cmdParser.set_required<uint32_t>( "hidden", "NumHidden", "Num Hidden neurons." );
-    cmdParser.set_required<uint32_t>( "out", "NumOutputs", "Num Output neurons." );
-
-    if ( !cmdParser.run() )
-    {
-        std::cout << "Invalid command line arguments";
-        return 1;
-    }*/
 
     std::string trainingDataPath = path;
     uint32_t const numInputs = in;
@@ -55,7 +42,7 @@ int mainTraining(std::string path, uint32_t in, uint32_t hidden, uint32_t out)
     BPN::TrainingDataReader dataReader( trainingDataPath, numInputs, numOutputs );
     if ( !dataReader.ReadData() )
     {
-        return 1;
+        return NULL;
     }
 
     // Create neural network
@@ -73,8 +60,7 @@ int mainTraining(std::string path, uint32_t in, uint32_t hidden, uint32_t out)
     BPN::NetworkTrainer trainer( trainerSettings, &nn );
     trainer.Train( dataReader.GetTrainingData() );
 
-	std::vector<double> input = { 2, 8, 3, 5, 1, 8, 13, 0, 6, 6, 10, 8, 0, 8, 0, 8 };
-	std::vector<int32_t> output = nn.Evaluate(input);
+	
 
-    return 0;
+    return &nn;
 }

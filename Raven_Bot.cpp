@@ -82,6 +82,16 @@ Raven_Bot::Raven_Bot(Raven_Game* world, Vector2D pos) :
                                         script->GetDouble("Bot_AimPersistance"));
 
   m_pSensoryMem = new Raven_SensoryMemory(this, script->GetDouble("Bot_MemorySpan"));
+
+  //create a timer
+  timer = new PrecisionTimer(FrameRate);
+  timeSinceLastShot = 0.0;
+  timeSinceLastWrite = 0.0;
+  delay = 0.25;
+  //start the timer
+  timer->Start();
+
+  trained = false;
 }
 
 //-------------------------------- dtor ---------------------------------------
@@ -89,7 +99,6 @@ Raven_Bot::Raven_Bot(Raven_Game* world, Vector2D pos) :
 Raven_Bot::~Raven_Bot()
 {
   debug_con << "deleting raven bot (id = " << ID() << ")" << "";
-  
   delete m_pBrain;
   delete m_pPathPlanner;
   delete m_pSteering;
@@ -121,6 +130,8 @@ void Raven_Bot::Spawn(Vector2D pos)
 //
 void Raven_Bot::Update()
 {
+	
+
   //process the currently active goal. Note this is required even if the bot
   //is under user control. This is because a goal is created whenever a user 
   //clicks on an area of the map that necessitates a path planning request.
@@ -164,50 +175,121 @@ void Raven_Bot::Update()
 		if (!learner) {
 			m_pWeaponSys->TakeAimAndShoot();
 		}
+		else {
+			if (!trained)
+			{
+				uint32_t in = 11;
+				uint32_t out = 1;
+				nn = mainTraining("CSV/example.csv", in, in, out);
+				this->trained = true;
+			}
+			else {
+				double distTarget = -1;
+				double visibleTarget = 0;
+				double timeVisibleTarget = 0;
+				double timehiddenTarget = -1;
+				double facingX = 0;
+				double facingY = 0;
+				double targetDirectionX = 0;
+				double targetDirectionY = 0;
+				double ammunition = 0;
+				double weaponType = type_blaster;
+				double targetHealth = -1;
+
+				if (m_pTargSys->isTargetPresent()) {
+					distTarget = (m_pTargSys->GetTarget()->Pos()).Distance(this->Pos());
+					visibleTarget = m_pTargSys->isTargetShootable();
+					timeVisibleTarget = m_pTargSys->GetTimeTargetHasBeenVisible();
+					timehiddenTarget = m_pTargSys->GetTimeTargetHasBeenOutOfView();
+
+					Vector2D normal = m_pTargSys->GetTarget()->Pos() - this->Pos();
+					normal.Normalize();
+					targetDirectionX = normal.x;
+					targetDirectionY = normal.y;
+
+					targetHealth = m_pTargSys->GetTarget()->Health();
+
+				}
+
+				facingX = this->Facing().x;
+				facingY = this->Facing().y;
+				Raven_Weapon* weapon = this->GetWeaponSys()->GetCurrentWeapon();
+				weaponType = m_pWeaponSys->GetWeaponType();
+				ammunition = m_pWeaponSys->GetAmmoRemainingForWeapon(weaponType);
+
+				/*std::vector<double> input = { distTarget,  visibleTarget, timeVisibleTarget , timehiddenTarget , facingX , facingY
+					, targetDirectionX , targetDirectionY , ammunition , weaponType , targetHealth };
+
+				std::vector<int32_t> output = nn->Evaluate(input);*/
+
+				std::vector<double> input = { 1.0,  1.0, 1.0, 1.0 , 0.5 , 0.5, 0.7 , 0.3 , 45.0 , type_blaster , 45.0 };
+				std::vector<int32_t> output = nn->Evaluate(input);
+				if (output[0] == 1)
+				{
+					m_pWeaponSys->TakeAimAndShoot();
+				}
+			}
+			
+
+		}
 		
 	  }
 	else {
-		int length;
-		std::fstream myfile;
-		myfile.open("CSV/example.csv", std::ofstream::out | std::ofstream::app);
+		if (timer->ReadyForNextFrame())
+		{
+			double shot = shotThisFrame ? 1 : 0;
+			if (shot || timer->CurrentTime() - timeSinceLastWrite>delay)
+			{
+				int length;
+				std::fstream myfile;
+				myfile.open("CSV/example.csv", std::ofstream::out | std::ofstream::app);
 
-		double distTarget = -1;
-		double visibleTarget = 0;
-		double timeVisibleTarget = 0;
-		double timehiddenTarget = -1;
-		double facingX = 0;
-		double facingY = 0;
-		double targetDirectionX = 0;
-		double targetDirectionY = 0;
-		double ammunition = 0;
-		double weaponType = type_blaster;
-		double targetHealth = -1;
+				double distTarget = -1;
+				double visibleTarget = 0;
+				double timeVisibleTarget = 0;
+				double timehiddenTarget = -1;
+				double facingX = 0;
+				double facingY = 0;
+				double targetDirectionX = 0;
+				double targetDirectionY = 0;
+				double ammunition = 0;
+				double weaponType = type_blaster;
+				double targetHealth = -1;
 
-		if (m_pTargSys->isTargetPresent()) {
-			distTarget = (m_pTargSys->GetTarget()->Pos()).Distance(this->Pos());
-			visibleTarget = m_pTargSys->isTargetShootable();
-			timeVisibleTarget = m_pTargSys->GetTimeTargetHasBeenVisible();
-			timehiddenTarget = m_pTargSys->GetTimeTargetHasBeenOutOfView();
+				if (m_pTargSys->isTargetPresent()) {
+					distTarget = (m_pTargSys->GetTarget()->Pos()).Distance(this->Pos());
+					visibleTarget = m_pTargSys->isTargetShootable();
+					timeVisibleTarget = m_pTargSys->GetTimeTargetHasBeenVisible();
+					timehiddenTarget = m_pTargSys->GetTimeTargetHasBeenOutOfView();
 
-			Vector2D normal = m_pTargSys->GetTarget()->Pos() - this->Pos();
-			normal.Normalize();
-			targetDirectionX = normal.x;
-			targetDirectionY = normal.y;
+					Vector2D normal = m_pTargSys->GetTarget()->Pos() - this->Pos();
+					normal.Normalize();
+					targetDirectionX = normal.x;
+					targetDirectionY = normal.y;
 
-			targetHealth = m_pTargSys->GetTarget()->Health();
+					targetHealth = m_pTargSys->GetTarget()->Health();
 
+				}
+
+				facingX = this->Facing().x;
+				facingY = this->Facing().y;
+				Raven_Weapon* weapon = this->GetWeaponSys()->GetCurrentWeapon();
+				weaponType = m_pWeaponSys->GetWeaponType();
+				ammunition = m_pWeaponSys->GetAmmoRemainingForWeapon(weaponType);
+
+
+
+				myfile << distTarget << "," << visibleTarget << "," << timeVisibleTarget << "," << timehiddenTarget << "," << facingX << "," << facingY
+					<< "," << targetDirectionX << "," << targetDirectionY << "," << ammunition << "," << weaponType << "," << targetHealth << "," << shot << "\n";
+				myfile.close();
+				this->shotThisFrame = false;
+				timeSinceLastWrite = timer->CurrentTime();
+			}
 		}
+		
+		
 
-		facingX = this->Facing().x;
-		facingY = this->Facing().y;
-		Raven_Weapon* weapon = this->GetWeaponSys()->GetCurrentWeapon();
-		weaponType = m_pWeaponSys->GetWeaponType();
-		ammunition = m_pWeaponSys->GetAmmoRemainingForWeapon(weaponType);				
-		double shot = shotThisFrame ? 1 : 0;
-		myfile << distTarget<<","<<visibleTarget << "," << timeVisibleTarget << "," << timehiddenTarget << "," << facingX << "," << facingY
-		<< "," << targetDirectionX << "," << targetDirectionY << "," << ammunition << "," << weaponType << "," << targetHealth <<","<< shot <<"\n";
-		myfile.close();
-		this->shotThisFrame = false;
+		
 	}
 }
 

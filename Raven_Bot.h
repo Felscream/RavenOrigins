@@ -16,6 +16,9 @@
 #include "game/MovingEntity.h"
 #include "misc/utils.h"
 #include "Raven_TargetingSystem.h"
+#include "Time/PrecisionTimer.h"
+#include "RN/mainTraining.h"
+
 
 
 class Raven_PathPlanner;
@@ -42,6 +45,7 @@ private:
 
 	bool shotThisFrame;
 	bool learner;
+	bool trained;
   //alive, dead or spawning?
   Status                             m_Status;
 
@@ -111,6 +115,17 @@ private:
   std::vector<Vector2D>              m_vecBotVB;
   //the buffer for the transformed vertices
   std::vector<Vector2D>              m_vecBotVBTrans;
+
+  //timer
+  double							timeSinceLastShot;
+  double							delay;
+  double							timeSinceLastWrite;
+  //create a timer
+  PrecisionTimer*					timer;
+  
+  //RN
+  BPN::Network*						nn;
+
 
 
   //bots shouldn't be copied, only created or respawned
@@ -212,7 +227,11 @@ public:
   Raven_WeaponSystem* const          GetWeaponSys()const{return m_pWeaponSys;}
   Raven_SensoryMemory* const         GetSensoryMem()const{return m_pSensoryMem;}
 
-
+  void SetVarRN() { 
+		this->learner = true;
+		this->m_bPossessed = false;
+		this->trained = false;
+  }
 };
 
 

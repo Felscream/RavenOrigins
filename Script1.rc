@@ -59,6 +59,10 @@ BEGIN
         MENUITEM "Show Goal Queue",             IDM_BOTS_SHOW_GOAL_Q
         MENUITEM "Show Path",                   IDM_NAVIGATION_SHOW_PATH
     END
+	POPUP "RN"
+	BEGIN
+		MENUITEM "Activer", IDM_RN
+	END
 END
 
 

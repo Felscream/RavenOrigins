@@ -62,6 +62,8 @@ private:
   //if true a bot is removed from the game
   bool                             m_bRemoveABot;
 
+
+
   //when a bot is killed a "grave" is displayed for a few seconds. This
   //class manages the graves
   GraveMarkers*                    m_pGraveMarkers;
@@ -160,7 +162,7 @@ public:
   PathManager<Raven_PathPlanner>* const    GetPathManager(){return m_pPathManager;}
   int                                      GetNumBots()const{return m_Bots.size();}
 
-  
+  Raven_Bot* GetFirstBot() { return m_Bots.front(); }
   void  TagRaven_BotsWithinViewRange(BaseGameEntity* pRaven_Bot, double range)
               {TagNeighbors(pRaven_Bot, m_Bots, range);}  
 };
