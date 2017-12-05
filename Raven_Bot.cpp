@@ -403,7 +403,9 @@ bool Raven_Bot::HandleMessage(const Telegram& msg)
     }
 
   case Msg_DeadEye: {
-	  ennemiesHit++;
+	  if (trained) {
+		  ennemiesHit++;
+	  }
 	  return true;
   }
 
