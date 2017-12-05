@@ -46,6 +46,7 @@ private:
 	bool shotThisFrame;
 	bool learner;
 	bool trained;
+	int ennemiesHit = 0;
   //alive, dead or spawning?
   Status                             m_Status;
 
@@ -122,6 +123,8 @@ private:
   double							timeSinceLastWrite;
   //create a timer
   PrecisionTimer*					timer;
+  double						   spawnTime;
+  double						   lifeTime = 0.0;
   
   //RN
   BPN::Network*						nn;
@@ -175,7 +178,18 @@ public:
   bool          isSpawning()const{return m_Status == spawning;}
   
   void          SetSpawning(){m_Status = spawning;}
-  void          SetDead(){m_Status = dead;}
+  void          SetDead() {
+	  if (trained) {
+		  lifeTime = timer->CurrentTime() - spawnTime; 
+		  std::fstream myfile;
+		  myfile.open("CSV/results.csv", std::ofstream::out | std::ofstream::app);
+		  myfile << lifeTime<<","<<ennemiesHit<<"\n";
+		  
+	  }
+	  m_Status = dead;
+  }
+
+  double		GetLifeTime() {return lifeTime;}
   void          SetAlive(){m_Status = alive;}
 
   //returns a value indicating the time in seconds it will take the bot

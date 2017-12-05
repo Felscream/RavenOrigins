@@ -103,6 +103,11 @@ void Pellet::TestForImpact()
                               hit->ID(),
                               Msg_TakeThatMF,
                               (void*)&m_iDamageInflicted);
+  Dispatcher->DispatchMsg(SEND_MSG_IMMEDIATELY,
+	  m_iShooterID,
+	  m_iShooterID,
+	  Msg_DeadEye,
+	  (void*)&m_iDamageInflicted);
 }
 
 //-------------------------- Render -------------------------------------------

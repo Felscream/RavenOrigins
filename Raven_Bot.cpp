@@ -180,6 +180,7 @@ void Raven_Bot::Update()
 				uint32_t in = 11;
 				uint32_t out = 1;
 				mainTraining("CSV/example.csv", this->nn);
+				spawnTime = timer->CurrentTime();
 				this->trained = true;
 			}
 			else {
@@ -286,10 +287,6 @@ void Raven_Bot::Update()
 				timeSinceLastWrite = timer->CurrentTime();
 			}
 		}
-		
-		
-
-		
 	}
 }
 
@@ -404,6 +401,11 @@ bool Raven_Bot::HandleMessage(const Telegram& msg)
 
       return true;
     }
+
+  case Msg_DeadEye: {
+	  ennemiesHit++;
+	  return true;
+  }
 
 
   default: return false;

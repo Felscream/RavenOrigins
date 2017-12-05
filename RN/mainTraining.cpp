@@ -54,7 +54,7 @@ int mainTraining(std::string path, BPN::Network* nn)
 	trainerSettings.m_learningRate = 0.001;
 	trainerSettings.m_momentum = 0.9;
 	trainerSettings.m_useBatchLearning = false;
-	trainerSettings.m_maxEpochs = 800;
+	trainerSettings.m_maxEpochs = 20000;
 	trainerSettings.m_desiredAccuracy = 85;
 
 	BPN::NetworkTrainer trainer(trainerSettings, nn);
