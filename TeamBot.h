@@ -17,4 +17,5 @@ public:
 	~TeamBot();
 
 	Team* GetTeam() { return team; }
+	void Render();
 };

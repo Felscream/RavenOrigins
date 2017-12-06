@@ -292,7 +292,7 @@ void Raven_Game::NotifyAllBotsOfRemoval(Raven_Bot* pRemovedBot)const
     }
 }
 
-void Raven_Game::AddTeam(int size) {
+void Raven_Game::AddTeam(int size, int color) {
 	Team* team = new Team();
 	Raven_Bot* currentBot;
 	int i;
@@ -300,6 +300,7 @@ void Raven_Game::AddTeam(int size) {
 	currentBot = new TeamBotLeader(this, Vector2D(), team);
 	currentBot->GetSteering()->WallAvoidanceOn();
 	team->SetLeader((TeamBotLeader*)currentBot);
+	team->SetColor(color);
 
 	m_Bots.push_back(currentBot);
 	EntityMgr->RegisterEntity(currentBot);
@@ -429,8 +430,8 @@ bool Raven_Game::LoadMap(const std::string& filename)
   if (m_pMap->LoadMap(filename))
   { 
     //AddBots(/*script->GetInt("NumBots")*/1);
-	AddTeam(2);
-	AddTeam(2);
+	AddTeam(2,0);
+	AddTeam(2,1);
 
     return true;
   }

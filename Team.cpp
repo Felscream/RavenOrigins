@@ -4,7 +4,7 @@
 
 class Raven_Steering;
 
-Team::Team()
+Team::Team() : color(0)
 {
 }
 

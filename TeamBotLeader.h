@@ -15,5 +15,6 @@ public:
 	~TeamBotLeader();
 
 	Team* GetTeam() { return team; }
+	void Render();
 };
 
